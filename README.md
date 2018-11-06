@@ -46,7 +46,7 @@ Please run the helloTensor.py from this repository
 
 Is the task of taking an input and giving it a label. 
 
-# Example 
+# Example : Trained brains  
 
 Imagine exploring a jungle that only consisted of 4 different types of the following animals. 
 
@@ -55,23 +55,33 @@ Imagine exploring a jungle that only consisted of 4 different types of the follo
 3. Birds
 4. Snakes
 
-Having been familiar with these different types of animals previously, our * trained brains * would have no problems classifying each new animal they saw as one of the 4 animals in this jungle. 
+Based on previous observations (and the data obtained during the process), our trained brains would have no problems classifying each new animal they saw as one of the 4 animals found in this jungle. 
 
-Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is develop artificial neural networks so that a computer equiped with a camera (for this example) can perform the following tasks. 
+Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop artificial neural networks so that my robot equiped with a RGB-D camera can perform the following tasks: 
 
 1. Classify the animal 
 2. Detect the animal ***  A topic that is explored in perception
 
-Like all great brains, our network must be trained on previous data 
-The training set has been sorted 
+Like all great brains, our network must also be trained using previously obtained data. To do this, it is best if we separate our data into different subsets. 
 
-Now we have a new example, now determine which class it belongs too. 
+The training set has been sorted which means labels have been assigned to previously classified animals.
+
+In this case, consider the previous data came from our robot's first ever exploration premeired yesterday. The robot captured 40 monkies, 20 spiders, 83 birds, and 25 snakes on camera. From there, I carefully analyzed each image and provided each animal with a correct lablel.
+
+
+Within the first few seconds of the exploration our system detected a new example, now its job is to determine which class that animal belongs to. 
+
+
 
 # Logistic Classifier 
 
-a linear classifier takes in inputs, could be the pixels of an image, and applies a linear function to them to generate a prediction. 
+A linear classifier takes in as inputs the pixels of an image, and applies a linear function to them to generate a prediction of what the animal could be. 
+
+The linear function 
 
 WX + b = y
+
+where,
 
 W = The Matrix of Weights
 X = The Matrix of Inputs
@@ -80,18 +90,24 @@ y = The score
 
 NOTE: Scores can also be called logits 
 
-Training models involves finding the weights and bias necessary to make good predictions.  
-Note: In the case of classifying letters of the alphabet, each image as input, can have one and only possible label. 
+The process of training models involves finding the weights and bias necessary to allow the robot make a good prediction.  
+
+Note: When classifying each animal of the jungle, is important to remember that each animal can have one and only one possible label. 
+
+## Training 
 
 # Question: How to use scores to perform classification?
 
-In order to covert scores into proper probablities we use a Softmax function. Thefollowing are the characteristics of the proper probablities:   
+We convert the scores into probabilities, where the probability of the correct classification is close to 1 and the every other class is close to 0. 
+
+In order to covert scores into proper probablities, we use a Softmax function. The following are the characteristics of the proper probablities:   
 
 1. Proper probablites always sum to 1 
-2. They will be large when scores are large
-3. They will be small when score are small 
+2. They are directly proportional to the scores
 
+Explore the softmax function in Tensor Flow
 
+x = tf.nn.softmax([2.0, 1.0, 0.2])
 
 
 
