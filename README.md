@@ -4,14 +4,13 @@
 # 2018 
 
 
-# Deep_Neural_Networks
+# Deep Learning 
 
 # Introduction
 
-speech recognition
-computer vision 
-Deep learning is a more sophisticated way to solve classification problems. They have been used previously to discover new medicines, understand natural language and even interperting the contents of a document. 
-This repository contains code for implementing Deep Neural Networks in TensorFlow. This README provides an explanation of the code found in the repositiory
+Deep learning architectures such as deep neural networks, deep belief networks and recurrent neural networks have been applied to fields including computer vision, speech recognition, natural language processing, audio recognition, social network filtering, machine translation, bioinformatics, drug design and board game programs, where they have produced results comparable to and in some cases superior to human experts
+
+This repository contains code for implementing the basics of Deep Learning in TensorFlow. This README provides an explanation of the code found in the repositiory
 
 # Solving Problems 
 
