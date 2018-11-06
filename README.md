@@ -8,9 +8,9 @@
 
 # Introduction
 
-Deep learning architectures such as deep neural networks, deep belief networks and recurrent neural networks have been applied to fields including computer vision, speech recognition, natural language processing, audio recognition, social network filtering, machine translation, bioinformatics, drug design and board game programs, where they have produced results comparable to and in some cases superior to human experts. In general, Deep Learning is family of techniques that are adaptable to many problems. These techniques have a common infrastructure and langauage.
+Deep learning architectures such as deep neural networks, deep belief networks and recurrent neural networks have been applied to fields including computer vision, speech recognition, natural language processing, audio recognition, social network filtering, machine translation, bioinformatics, drug design and board game programs, where they have produced results comparable to and in some cases superior to human experts. In general, Deep Learning is a family of techniques that are adaptable to many problems. These techniques have a common infrastructure and langauage.
 
-This repository contains code for implementing the basics of Deep Learning in TensorFlow. This README provides an explanation of the code found in the repositiory
+This repository contains code for implementing the basics of Deep Learning in TensorFlow. This README provides an explanation of the theory of Deep Learning. 
 
 # Solving Problems 
 
@@ -42,7 +42,7 @@ A common type of problem we'd like to solve is classification. It can be defined
 
 # Example : Trained brains  
 
-Imagine exploring a jungle that only consisted of 4 different types of the following animals. 
+Imagine exploring a jungle that only consisted of 4 different types of the following animals:
 
 1. Monkies
 2. Spiders
@@ -71,16 +71,15 @@ NOTE: The validation set is used to prevent the classifier from learning directl
 
 An important concept to understand and prevent while training models.
 
-In this case, consider the previous data that came from our robot's first ever exploration premeired yesterday. The robot captured 40,000 monkies, 20,000 spiders, 33,300 birds, and 25,000 snakes on camera. As mentioned previous, I spent some time carefully analyzing each image and provided each animal with a correct lablel.
+In this case, consider the previous data that came from our robot's first ever exploration. The robot captured 40,000 monkies, 20,000 spiders, 33,300 birds, and 25,000 snakes on camera. As mentioned previous, I spent some time carefully analyzing each image and provided each animal with a correct lablel.
 
-
-Within the first few seconds of the exploration our system detected a new example, now its job is to determine which class that animal belongs to. 
+Within the first few seconds of the next exploration our system detected a new example, now its job is to determine which class that animal belongs to. 
 
 Let's develop a Classifier to help us do this. 
 
 # Logistic Classifier 
 
-Ideal we'd want out linear classifier takes in pixels of an image as inputs, and apply a linear function to them to generate a prediction of what the animal could be. 
+Ideally we'd want out linear classifier to take in pixels of an image as inputs, and apply a linear function to them to generate a prediction of what the animal could be. 
 
 The linear function we use is as follow  
 
@@ -106,7 +105,7 @@ To do this, we use the Softmax function.
 
 ## Softmax Function 
 
-Explore the softmax function in Tensor Flow  Deep_Neural_Networks/softmax.py
+Explore the softmax function in Tensor Flow Deep_Neural_Networks/softmax.py
 Results from the code if ran as is: 
 
 # [0.6590012  0.24243298 0.09856589]
@@ -124,8 +123,7 @@ The cross entropy function helps us to compare these new probabilities to the 1-
 
 # 1-Hot encoding 
 
-Goes back to the idea that each animal can only recieve 1 label. 
-To do this we come up with one variable for each of the classes.
+Goes back to the idea that each animal can only recieve 1 label. To do this we come up with one variable for each of the classes.
 
 If the input is a monkey, 
 ---
@@ -133,10 +131,30 @@ variable for moneky is 1
 variable for bird is 0 
 variable for spider is 0
 variable for snake is 0  
-
 ---
 
-....and the same for the other animals 
+If the input is a bird,
+---
+variable for moneky is 0
+variable for bird is 1
+variable for spider is 0
+variable for snake is 0  
+---
+If the input is a spider, 
+---
+variable for moneky is 0
+variable for bird is 0 
+variable for spider is 1
+variable for snake is 0  
+---
+
+If the input is a snake, 
+---
+variable for moneky is 0
+variable for bird is 0 
+variable for spider is 0
+variable for snake is 1  
+ 
 
 # Multinomial Logistic Classification 
 
@@ -144,7 +162,7 @@ variable for snake is 0
 
 A multinomial Logistic Classifier works as follow:
 
-1. Take in the image input and plug it in to the linear model and then output the logits (score)
+1. Take in the image input and plugs it in to the linear model and then output the logits (score)
 2. Logits are now the inputs to the Softmax function 
 3. The Softmax function converts the logits into probabilities
 4. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are classifying new objects. 
@@ -269,7 +287,7 @@ NOTE: If at least 30 examples are going from incorrect to correct, the methods b
 
 # Example
 
-Assume that we have 3000 examples in validation set and that we are confident about the rule of 30 
+Assume that we have 3000 examples in validation set and that we are confident that the rule of 30 works 
 
 Which level of accuracy change can trusted to not be noise? 
 
@@ -289,7 +307,7 @@ Some math
 NOTE: The bigger the test set the less noisy the accuracy measure will be 
 
 
-Training models with gradient descent is good but comes with scalability issuses. With so much data using an iterative process like Gradient Descent the process can be slow and inefficient.
+Training models with gradient descent is good but comes with scalability issuses. With so much data using an iterative process like Gradient Descent can be slow and inefficient.
 
 # If 
 computing the loss takes N number of floating point operations, 
@@ -304,8 +322,8 @@ SGD is the heart of deep learning because it tends to scale well with both big d
 Instead of calculating the loss, we compute a bad estimate of it and then spend time making it less terrible
 
 The estimate comes from computing the average loss for a very small random fraction of the training data
-
 NOTE: Between 1 and 1000 training samples each time 
+
 NOTE: The way you pick your samples is important, it must be completely random or it wont work. 
 
 0. Take a small piece of training data
@@ -315,44 +333,42 @@ NOTE: The way you pick your samples is important, it must be completely random o
 
 You may notice that performing this method may increase the real loss and not reduce it. However, we can compensate by doing this many times taking very small steps each time so that each step becomes a lot cheaper to compute. In other words we have to take smaller steps instead of one large step.
 
-SGD issues comes with issues. Below we talk about a common way to deal with those issues. 
+SGD comes with issues. Below we discuss a common way to deal with those issues. 
 
 # Momentum and Learning Rate Decay
 
-In order to improve the performance of the S 
+In order to improve the performance of the SGD we require  
 
-Inputs need to have 
+Inputs to have
+---
 Mean = 0
-equal variance (small)
+Equal variance (small)
 
-Initial weight need to be random
+Initial weight 
+---
+Need to be random
 Mean = 0
 equal variance(small) 
 
-
 ## Momentum
 
-at each step a small step in a random direction. Combided those steps take us towards the minimum of the loss 
+During each iteration, take a small step in a random direction. 
 
-knowledge accumulated from previous steps about where we should be heading 
+Combine those small steps in order to take us towards the minimum of the loss 
+NOTE: Knowledge accumulated from previous steps about where we should be heading 
 
-running average of gradients 
-
-use it instead of the current direction batch of the data.
+This running average of gradients is used instead of the current direction batch of the data.
 
 ## Learning Rate Decay
 
-
-that step size should be smaller and smaller over 
-
+This concept ensures that our step size becomes smaller and smaller over time.
 
 ## Parameter hyperspace 
 
-Learning rate tuning 
+Tune the Learning rate tuning 
+NOTE: Never trust how quickly you learn, it doesnt measure how well you train
 
-never trust how quickly you learn it doesnt measure how well you train
-
-Many hyper parameters
+# Hyper parameters
 
 ininitial learning rate
 learning decay rate 
@@ -360,72 +376,67 @@ momentum
 batch size
 weight initialization 
 
-Thing to remember: lower learning rate when things go wrong 
+NOTE: If training is not going well, try lowering the learning rate
 
 ## ADAGRAD
-ADAGRAD is a modification of SGD that implicity does momentum and learning rate decay. This makes learning less sensitive to hyper paramters 
+ADAGRAD is a modification of SGD that implicity does momentum and learning rate decay. This makes learning less sensitive to hyper paramters. 
 
 ## Mini Batching
 
 Mini-batching is a technique for training on subsets of the dataset instead of all the data at one time. This provides the ability to train a model, even if a computer lacks the memory to store the entire dataset.
 
-randomly shuffle the data at the start of each epoch, then create the mini-batches. For each mini-batch, you train the network weights with gradient descent. Since these batches are random, you're performing SGD with each batch.
-
+0. Randomly shuffle the data at the start of each epoch
+1. create the mini-batches. For each mini-batch, you train the network weights with gradient descent. Since these batches are random, you're performing SGD with each batch.
 
 ## Calculating Memory requirements 
  
-
-
-
 ### TensorFlow Mini-batching 
 
-must divide data into branches 
+Our goal here is to divide the data into batches 
+NOTE: Data can't always be divided equally. Therefore, we need a way for our classifier to accept varying batch sizes. 
 
-Data can't always be divided equally. If we wanted to create 128 sample from a data set of 1000, we'd have 
+If we wanted to create 128 sample from a data set of 1000, we'd have 
 
 7 batches of 128 samples 
 1 batch of 104 samples 
 
-
-Batch size will vary so we use TensorFlow's 
+TensorFlow provides a function to deal with varying batch sizes
 
 tf.placeholder()
 
 
-function 
+if each sample has
 
-if each sample had n_input = 784 features and n_classes = 10 possible labels, the dimensions for: 
+0. n_input = 784 features 
+1. n_classes = 10 possible labels
+
+then, the dimensions for: 
 
 features would be [None, n_input] 
 labels would be [None, n_classes]
-
-NOTE: The None dimension is a placeholder for the batch size. 
-
-
-This set up allows us to feed features and labels into the model with varying batch sizes
+NOTE: The None dimension is a placeholder for the batch size. This setup allows us to feed features and labels into the model with varying batch sizes
 
 # Explore the mini batch functionn and example in the repository 
 
 
 # Epochs 
 
-a single forward and backward pass of the entire data set. 
-
-used to increase the accuracy of the model without requiring more data.
+An Epoch is a single forward and backward pass of the entire data set and is used to increase the accuracy of the model without requiring more data.
+NOTE: Each epoch attempts to move to a lower cost, leading to better accuracy. 
 
 ## Epochs in TensorFlow
 
-see Epochs example in repository 
- 
+See Epochs example in repository 
 
-Each epoch attempts to move to a lower cost, leading to better accuracy. 
 
 # Parameter tuning 
 
 # Epoch
 
-Multiply epoch value by 10 and determine how well test accuracy improves.
-Find a point where large changes in epoch result in small changes to accuracy. 
+0. Choose an arbitrary Epoch number record the test accuracy.
+1. Multiply epoch value by 10 
+2. Determine how well test accuracy improves.
+3. Find an epoch value where large changes in magnitude result in small changes to accuracy. 
 
 # Learning Rate
 
