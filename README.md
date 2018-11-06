@@ -418,6 +418,20 @@ used to increase the accuracy of the model without requiring more data.
 see Epochs example in repository 
  
 
+Each epoch attempts to move to a lower cost, leading to better accuracy. 
+
+# Parameter tuning 
+
+# Epoch
+
+Multiply epoch value by 10 and determine how well test accuracy improves.
+Find a point where large changes in epoch result in small changes to accuracy. 
+
+# Learning Rate
+
+Lowering the learning rate requires more epochs, but achieves better accuracy. 
+
+## Practice methods available in the lab from the repository 
 
 
 
