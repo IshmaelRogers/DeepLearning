@@ -8,18 +8,13 @@
 
 # Introduction
 
-Deep learning architectures such as deep neural networks, deep belief networks and recurrent neural networks have been applied to fields including computer vision, speech recognition, natural language processing, audio recognition, social network filtering, machine translation, bioinformatics, drug design and board game programs, where they have produced results comparable to and in some cases superior to human experts
+Deep learning architectures such as deep neural networks, deep belief networks and recurrent neural networks have been applied to fields including computer vision, speech recognition, natural language processing, audio recognition, social network filtering, machine translation, bioinformatics, drug design and board game programs, where they have produced results comparable to and in some cases superior to human experts. In general, Deep Learning is family of techniques that are adaptable to many problems. These techniques have a common infrastructure and langauage.
 
 This repository contains code for implementing the basics of Deep Learning in TensorFlow. This README provides an explanation of the code found in the repositiory
 
 # Solving Problems 
 
-Lots of data and complex problems
-
-understanding what's in an image and translating a document to another language
-
-A family of techniques that are adaptable to many problems. These techniques have a common infrastructure and langauage.
-
+Deep learning is necessary when there is a lot of data to work with and a complex problem to solve. Some common problems include understanding what's in an image and translating a document to another language.
 
 # Instructions for Installing TensorFlow 
 
@@ -39,11 +34,11 @@ C = tf.constant(([123, 456, 789], [222, 333, 444]) is a 2-dimensional int32 tens
 
 TensorFlow's API is built around the concept of a computational graph. A "TensorFlow Session" is an environement for runnng a graph.  The session is responsible for allocating the operations to GPU(s) and/or CPU(s) 
 
-Please run the helloTensor.py from this repository
+Please run the "helloTensor.py" file contianed in this repository
 
 # Classification Problems 
 
-Is the task of taking an input and giving it a label. 
+A common type of problem we'd like to solve is classification. It can be defined as the task of taking an input, feeding it into the network and giving it a label. 
 
 # Example : Trained brains  
 
@@ -54,31 +49,42 @@ Imagine exploring a jungle that only consisted of 4 different types of the follo
 3. Birds
 4. Snakes
 
-Based on previous observations (and the data obtained during the process), our trained brains would have no problems classifying each new animal they saw as one of the 4 animals found in this jungle. 
+Based on previous observations (and the data obtained during the process), our trained brains would have no problems classifying each new animal we saw as one of the 4 animals found in this jungle. 
 
-Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop artificial neural networks so that my robot equiped with a RGB-D camera can perform the following tasks: 
+Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop artificial neural networks so that a robot equiped with a camera can perform the following tasks: 
 
 1. Classify the animal 
 2. Detect the animal ***  A topic that is explored in perception
 
-Like all great brains, our network must also be trained using previously obtained data. To do this, it is best if we separate our data into different subsets. 
+Like all great brains, our artificial network must also be trained using previously obtained data. To do this, it is best if we separate our data into different subsets for optimal training. 
 
-The training set has been sorted which means labels have been assigned to previously classified animals.
+1. Training set
+2. Validation set 
+3. Testing set ***
 
-In this case, consider the previous data came from our robot's first ever exploration premeired yesterday. The robot captured 40 monkies, 20 spiders, 83 birds, and 25 snakes on camera. From there, I carefully analyzed each image and provided each animal with a correct lablel.
+*** Depending on the size of the data set, take one or more subsets of test data and do not perform any analysis on them. 
+NOTE: It is best practice to always seperate data sets so that the data stays completely unbiased.
+NOTE: The training set, the previous data has been sorted which means labels have been assigned to correctly classified animals.
+NOTE: The validation set is used to prevent the classifier from learning directly from the test set.
+
+## Overfitting 
+
+An important concept to understand and prevent while training models.
+
+In this case, consider the previous data that came from our robot's first ever exploration premeired yesterday. The robot captured 40,000 monkies, 20,000 spiders, 33,300 birds, and 25,000 snakes on camera. As mentioned previous, I spent some time carefully analyzing each image and provided each animal with a correct lablel.
 
 
 Within the first few seconds of the exploration our system detected a new example, now its job is to determine which class that animal belongs to. 
 
-
+Let's develop a Classifier to help us do this. 
 
 # Logistic Classifier 
 
-A linear classifier takes in as inputs the pixels of an image, and applies a linear function to them to generate a prediction of what the animal could be. 
+Ideal we'd want out linear classifier takes in pixels of an image as inputs, and apply a linear function to them to generate a prediction of what the animal could be. 
 
-The linear function 
+The linear function we use is as follow  
 
-WX + b = y
+W x X + b = y  <----- Create equation 
 
 where,
 
@@ -87,39 +93,38 @@ X = The Matrix of Inputs
 b = The Bias 
 y = The score
 
-NOTE: Scores can also be called logits 
+NOTE: Scores are also called logits 
+NOTE: When classifying each animal of the jungle, it is important to remember that each animal can have one and only one possible label. 
 
-The process of training models involves finding the weights and bias necessary to allow the robot make a good prediction.  
-
-Note: When classifying each animal of the jungle, is important to remember that each animal can have one and only one possible label. 
-
-## Training 
+## Training the classifier
 
 # Question: How to use scores to perform classification?
 
-We convert the scores into probabilities, where the probability of the correct classification is close to 1 and the every other class is close to 0. 
+In practice we wil convert the scores into proper probabilities such that, the probability of the correct classification is close to 1 and the every other classification is close to 0.
 
-In order to covert scores into proper probablities, we use a Softmax function. The following are the characteristics of the proper probablities:   
+To do this, we use the Softmax function. 
+
+## Softmax Function 
+
+Explore the softmax function in Tensor Flow  Deep_Neural_Networks/softmax.py
+Results from the code if ran as is: 
+
+# [0.6590012  0.24243298 0.09856589]
+
+# Proper Probabilities
+
+The following are the characteristics of the proper probablities
 
 1. Proper probablites always sum to 1 
 2. They are directly proportional to the scores
 
-Explore the softmax function in Tensor Flow  Deep_Neural_Networks/softmax.py
-
-Results from the code if ran as is 
-
-# [0.6590012  0.24243298 0.09856589]
-
-
-
 ## Cross-entropy in TensorFlow
 
-The cross entropy function helps us to compare these new probabilities to the one-hot encoded labels. 
+The cross entropy function helps us to compare these new probabilities to the 1-Hot encoded labels by measuring the distance between the two probablity vectors. That distance can help determine how correct our prediction is.  We can measure how well we are doing with 
 
-# One - hot encoded
+# 1-Hot encoding 
 
 Goes back to the idea that each animal can only recieve 1 label. 
-
 To do this we come up with one variable for each of the classes.
 
 If the input is a monkey, 
@@ -133,22 +138,19 @@ variable for snake is 0
 
 ....and the same for the other animals 
 
-
-We can measure how well we are doing with 
-
-Cross entropy equation measures the distance between two probablity vectors 
-
 # Multinomial Logistic Classification 
+
 ## Insert equation
 
-works like this:
-1. Take in the input and plug it in to the linear model and then output the logits
-2. Logits are not the inputs to the softmax function 
-3. The softmax function converts the logits into probabilities
-4. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are doing
+A multinomial Logistic Classifier works as follow:
+
+1. Take in the image input and plug it in to the linear model and then output the logits (score)
+2. Logits are now the inputs to the Softmax function 
+3. The Softmax function converts the logits into probabilities
+4. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are classifying new objects. 
 
 
-To do this we woll use two new functions provided by tensor flow 
+To do this we will use two functions provided by TensorFlow: 
 
 tf.reduce_sum(
     input_tensor,
@@ -164,107 +166,112 @@ tf.math.log(
     name=None
 )
 
-See link for cross_entropy.py
+# Cross_entropy.py
 
-Results of the "cross_entropy.py" file 
+See "cross_entropy.py" file in this repository 
+
+Results of the "cross_entropy.py" as seen in the repository  
 
 0.35667497
 
 ## Minimizing Cross Entropy
 
-In order to find the best weights and bias we need to identify the weights and bias that result in the smallest cross entropy. We can use the concept of Loss 
+In order to find the BEST weights and biases we need to identify the weights, W and biases, b that result in the smallest cross entropy. 
+
+Let's introduce the concept of Loss 
 
 # Loss =  Average Cross-Entropy
 
-Mathematically we can see that the loss is a function of the weights and biases. Therefore we continually adjust the weights and bias until we obtain the set that results in the smallest possible loss. Now we must briefly shift gears from a classification problem to a numerical optimization problem. 
+Mathematically we can see that the loss is a function of the weights and biases. Therefore we can continually adjust the weights and biases until we obtain the set that results in the smallest possible loss. 
+
+Now we must briefly shift gears from a classification problem to a numerical optimization problem. 
 
 ## Numerical Optimization
 
-definition
+Definition: the selection of a best element (with regard to some criterion) from some set of available alternatives. 
 
-To solve in the simpliest way
+An optimization problem consists of maximizing or minimizing a real function by SYSTEMATICALLY choosing input values from within an allowed set and computing the value of the function. 
+
+The best way to systematically choose the input values is with Gradient Descent.
 
 # Graident Descent 
 
-To perform graident descent take the derivative of loss with respect to parameters, follow it by taking a step backwards and repeat until we get to the bottom. 
+To perform graident descent:
+
+1. Take the derivative of loss function with respect to parameters, 
+2. Follow it by taking a step backwards
+3. Repeat until we get reach a minimum of the function
 
 NOTE: The derivative can be a function of thousands of parameters. 
 
 ## Numerical stabilty
 
-Adding a very large number to a very small number introduces a lot of error. We want the values to never get too big or too small
+Adding a very large number to a very small number introduces a lot of error. We want the values to never get too big or too small therefore we enforce the following requirements for variables.
 
-Variables need to zero mean and equal variance 
+Variables should be:
+1. Mean = 0 
+2. Equal variance 
 
-Badly condition vs well conditio 
+Without these requirements we run the risk of having badly conditioned data.   
 
-## How to feed image pixels to the classifier 
-Images 
+## Feeding image pixels to the classifier 
+ 
+Images need to be normalized before being feed into our classifier.
 
-Normalized 
-take pixel value of image (0-255) subtract by 128 and divide by 128. Does nt change content 
+To do this:
 
-Weights neef to be initialize at a good enough startign point
+1. Take pixel value of image (usually 0-255) subtract by 128
+2. Divide by 128. 
 
-scheme 
+Performing this step does not change content of the data. Instead, it makes it easier for the classifier to perform repeated operations.  
+NOTE: Weights and biases need to be initialize at a good enough starting point
 
-draw weights randomly from a gaussian distribution with mean zero and standard deviation sigma
+# The Procedure 
 
-sigma determines order of magnitude of the outputs at the initial point of the optimization. 
+Draw weights randomly from a gaussian distribution with mean zero and standard deviation sigma
 
-order also determines peakieness 
+NOTE: Sigma determines the order of magnitude of the outputs at the initial point of the optimization. 
 
-A large sigma means large peaks - very opionnated and certain
-A small sigma means small peaks - very uncertain 
+NOTE: The order also determines peakieness of the graph.  
 
-NOTE: Start off with a small peak and let the optimization gain confidence. 
+NOTE: A large sigma means large peaks - very opionnated and certain
+
+NOTE: A small sigma means small peaks - very uncertain 
+
+NOTE: Start off with a small peak and let the optimization gain confidence through training. 
 
 ## Where to initialize the optimization
 
-Optimization package compute derivative of the loss with respect to the weights and biases and takes a step backwards in the direction opposite to that derivative. Do until we reach a minimum of the loss function. 
+The optimization package that is built into TensorFlow:
+
+1. Computes the derivative of the loss with respect to the weights and biases
+2. Takes a step backwards in the direction opposite to that derivative. 
+
+These two steps are repeated until we reach a minimum of the loss function. 
+
+## Neural Network Lab
 
 Udacity has provided me with a lab to test these concepts.
 
-Please see link 
+Please see repository 
 
-
-Training set 
-
-Test set ***
-
-Validation set 
-
-Seperate the sets so that the data stays completely unbiased.
-
-*** Depending on the size of the data set, take one or nmore subsets of data and do not perform any analysis on them. 
-
-## Overfittng 
-
-We use a validation set when training models to prevent the robot from learning from the test set. 
 
 # Validation and Test Set size 
 
-For most classification tasks I tend to hold back more than 30,000 examples for validation changes 0.1% in accuracy
+For most classification tasks it is necessary to hold back more than 30,000 examples. This can result in validation changes of 0.1% in accuracy
 
-If classes are not well balanced, for example, if some important classes are very rare the heiuristic is no good.
+If classes are not well balanced, for example, if some important classes are very rare, this heiuristic is no good.
 
 # Rule of 30
 
+A change that effects 30 examples in your validation set one way or another is statistically significant, and can be trusted. 
+NOTE: If at least 30 examples are going from incorrect to correct, the methods being implemented are improving the model.
 
-## Techniques for overfitting.  
+# Example
 
+Assume that we have 3000 examples in validation set and that we are confident about the rule of 30 
 
-The bigger the test set the less noisy the accuracy measure will be 
-
-a change that effects 30 examples in your validation set one way or another is statistically significant, and can be trusted. 
-
-RUle of 30 
-
-Example 
-
-Out of 3000 examples in validation set trust rule of 30 
-
-which level of accuracy can you be confident is not noise? 
+Which level of accuracy change can trusted to not be noise? 
 
 80% -> 81.0% 
 80% -> 80.5%
@@ -272,53 +279,47 @@ which level of accuracy can you be confident is not noise?
 
 Some math 
  ---
-(1.0 x 3000)/100 = 30
+(1.0 x 3000)/100 = 30 <--
 (0.5 x 3000)/100 = 15
 (0.1 x 3000)/100 = 3
 
 
-In summary if at least 30 examples are going from incorrect to correct the methods are improving the models
+## Techniques for preventing overfitting.  
 
-Training models with gradient descent is good but comes with scalability issuses.
+NOTE: The bigger the test set the less noisy the accuracy measure will be 
 
-If computing the loss takes n floating point operations, computing the graident takes 3 times that to compute
 
-So much data using an iterative process like Gradient Descent is slow and inefficient 
+Training models with gradient descent is good but comes with scalability issuses. With so much data using an iterative process like Gradient Descent the process can be slow and inefficient.
 
+# If 
+computing the loss takes N number of floating point operations, 
+
+# Then 
+computing the graident takes 3 times that to compute
 
 ### Stochastic Gradient Descent 
 
-The heart of deep learning 
-
-Scales well with both big data and big model sizes
-
-A bad optimizer but fast enough to get the job done.
-
+SGD is the heart of deep learning because it tends to scale well with both big data and big model sizes. In general, SGD is a bad optimizer but is fast enough to get the job done.
 
 Instead of calculating the loss, we compute a bad estimate of it and then spend time making it less terrible
 
-The estimate comes from computing the average loss for a very small random fraction of the training data 
+The estimate comes from computing the average loss for a very small random fraction of the training data
 
-between 1 and 1000 training samples each time 
-
-The way you pick your samples is important, it must be completely random or it wont work. 
+NOTE: Between 1 and 1000 training samples each time 
+NOTE: The way you pick your samples is important, it must be completely random or it wont work. 
 
 0. Take a small piece of training data
-1. compute the loss for that sample
-2. compute the derivative for that sample
-3. pretend that that derivate is the right direction to use to do gradient descent. 
+1. Compute the loss for that sample
+2. Compute the derivative for that sample
+3. Pretend that that derivate is the right direction to use to do gradient descent. 
 
-It may increase the real loss and not reduce it 
+You may notice that performing this method may increase the real loss and not reduce it. However, we can compensate by doing this many times taking very small steps each time so that each step becomes a lot cheaper to compute. In other words we have to take smaller steps instead of one large step.
 
-We compensate by doing this many times taking very small steps each time so that each step becomes a lot cheaper to compute. In other words we have to take smaller steps instead of one large step.
-
-SGD issues 
-
-
+SGD issues comes with issues. Below we talk about a common way to deal with those issues. 
 
 # Momentum and Learning Rate Decay
 
-in order to improve the SGD 
+In order to improve the performance of the S 
 
 Inputs need to have 
 Mean = 0
