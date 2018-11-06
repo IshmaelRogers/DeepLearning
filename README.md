@@ -164,3 +164,73 @@ tf.math.log(
     x,
     name=None
 )
+
+See link for cross_entropy.py
+
+Results of the "cross_entropy.py" file 
+
+0.35667497
+
+## Minimizing Cross Entropy
+
+In order to find the best weights and bias we need to identify the weights and bias that result in the smallest cross entropy. We can use the concept of Loss 
+
+# Loss =  Average Cross-Entropy
+
+Mathematically we can see that the loss is a function of the weights and biases. Therefore we continually adjust the weights and bias until we obtain the set that results in the smallest possible loss. Now we must briefly shift gears from a classification problem to a numerical optimization problem. 
+
+## Numerical Optimization
+
+definition
+
+To solve in the simpliest way
+
+# Graident Descent 
+
+To perform graident descent take the derivative of loss with respect to parameters, follow it by taking a step backwards and repeat until we get to the bottom. 
+
+NOTE: The derivative can be a function of thousands of parameters. 
+
+## Numerical stabilty
+
+Adding a very large number to a very small number introduces a lot of error. We want the values to never get too big or too small
+
+Variables need to zero mean and equal variance 
+
+Badly condition vs well conditio 
+
+Images 
+
+Normalized 
+take pixel value of image (0-255) subtract by 128 and divide by 128. Does nt change content 
+
+Weights neef to be initialize at a good enough startign point
+
+scheme 
+
+draw weights randopmly from a gaussian distribution with mean zero and standard deviation sigma
+
+sigma determines order of magnitude of the outputs at the initial point of the optimization. 
+
+order also determines peakieness 
+
+A large sigma means large peaks - very opionnated and certain
+A small sigma means small peaks - very uncertain 
+
+NOTE: Start off with a small peak and let the optimization gain confidence. 
+
+Optimization package compute derivative of the loss with respect to the weights and biases and takes a step backwards in the direction opposite to that derivative. Do until we reach a minimum of the loss function. 
+
+
+
+
+
+## How to feed image pixels to the classifier 
+
+
+## Where to initialize the optimization
+
+
+
+
+
