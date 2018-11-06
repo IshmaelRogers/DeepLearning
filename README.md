@@ -105,12 +105,62 @@ In order to covert scores into proper probablities, we use a Softmax function. T
 1. Proper probablites always sum to 1 
 2. They are directly proportional to the scores
 
-Explore the softmax function in Tensor Flow 
+Explore the softmax function in Tensor Flow  Deep_Neural_Networks/softmax.py
+
+Results from the code if ran as is 
+
+# [0.6590012  0.24243298 0.09856589]
 
 
-x = tf.nn.softmax([2.0, 1.0, 0.2])
+
+## Cross-entropy in TensorFlow
+
+The cross entropy function helps us to compare these new probabilities to the one-hot encoded labels. 
+
+# One - hot encoded
+
+Goes back to the idea that each animal can only recieve 1 label. 
+
+To do this we come up with one variable for each of the classes.
+
+If the input is a monkey, 
+---
+variable for moneky is 1
+variable for bird is 0 
+variable for spider is 0
+variable for snake is 0  
+
+---
+
+....and the same for the other animals 
 
 
+We can measure how well we are doing with 
+
+Cross entropy equation measures the distance between two probablity vectors 
+
+# Multinomial Logistic Classification 
+## Insert equation
+
+works like this:
+1. Take in the input and plug it in to the linear model and then output the logits
+2. Logits are not the inputs to the softmax function 
+3. The softmax function converts the logits into probabilities
+4. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are doing
 
 
+To do this we woll use two new functions provided by tensor flow 
 
+tf.reduce_sum(
+    input_tensor,
+    axis=None,
+    keepdims=None,
+    name=None,
+    reduction_indices=None,
+    keep_dims=None
+)
+
+tf.math.log(
+    x,
+    name=None
+)
