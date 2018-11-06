@@ -44,23 +44,23 @@ A common type of problem we'd like to solve is classification. It can be defined
 
 Imagine exploring a jungle that only consisted of 4 different types of the following animals:
 
-1. Monkies
-2. Spiders
-3. Birds
-4. Snakes
+0. Monkies
+1. Spiders
+2. Birds
+3. Snakes
 
 Based on previous observations (and the data obtained during the process), our trained brains would have no problems classifying each new animal we saw as one of the 4 animals found in this jungle. 
 
 Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop artificial neural networks so that a robot equiped with a camera can perform the following tasks: 
 
-1. Classify the animal 
-2. Detect the animal ***  A topic that is explored in perception
+0. Classify the animal 
+1. Detect the animal ***  A topic that is explored in perception
 
 Like all great brains, our artificial network must also be trained using previously obtained data. To do this, it is best if we separate our data into different subsets for optimal training. 
 
-1. Training set
-2. Validation set 
-3. Testing set ***
+0. Training set
+1. Validation set 
+2. Testing set ***
 
 *** Depending on the size of the data set, take one or more subsets of test data and do not perform any analysis on them. 
 NOTE: It is best practice to always seperate data sets so that the data stays completely unbiased.
@@ -113,9 +113,8 @@ Results from the code if ran as is:
 # Proper Probabilities
 
 The following are the characteristics of the proper probablities
-
-1. Proper probablites always sum to 1 
-2. They are directly proportional to the scores
+0. Proper probablites always sum to 1 
+1. They are directly proportional to the scores
 
 ## Cross-entropy in TensorFlow
 
@@ -162,10 +161,10 @@ variable for snake is 1
 
 A multinomial Logistic Classifier works as follow:
 
-1. Take in the image input and plugs it in to the linear model and then output the logits (score)
-2. Logits are now the inputs to the Softmax function 
-3. The Softmax function converts the logits into probabilities
-4. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are classifying new objects. 
+0. Take in the image input and plugs it in to the linear model and then output the logits (score)
+1. Logits are now the inputs to the Softmax function 
+2. The Softmax function converts the logits into probabilities
+3. The distance from the softmax function's output from the 1 hot labels helps us measure how well we are classifying new objects. 
 
 
 To do this we will use two functions provided by TensorFlow: 
@@ -216,9 +215,9 @@ The best way to systematically choose the input values is with Gradient Descent.
 
 To perform graident descent:
 
-1. Take the derivative of loss function with respect to parameters, 
-2. Follow it by taking a step backwards
-3. Repeat until we get reach a minimum of the function
+0. Take the derivative of loss function with respect to parameters, 
+1. Follow it by taking a step backwards
+2. Repeat until we get reach a minimum of the function
 
 NOTE: The derivative can be a function of thousands of parameters. 
 
@@ -227,8 +226,8 @@ NOTE: The derivative can be a function of thousands of parameters.
 Adding a very large number to a very small number introduces a lot of error. We want the values to never get too big or too small therefore we enforce the following requirements for variables.
 
 Variables should be:
-1. Mean = 0 
-2. Equal variance 
+0. Mean = 0 
+1. Equal variance 
 
 Without these requirements we run the risk of having badly conditioned data.   
 
@@ -238,8 +237,8 @@ Images need to be normalized before being feed into our classifier.
 
 To do this:
 
-1. Take pixel value of image (usually 0-255) subtract by 128
-2. Divide by 128. 
+0. Take pixel value of image (usually 0-255) subtract by 128
+1. Divide by 128. 
 
 Performing this step does not change content of the data. Instead, it makes it easier for the classifier to perform repeated operations.  
 NOTE: Weights and biases need to be initialize at a good enough starting point
@@ -262,8 +261,8 @@ NOTE: Start off with a small peak and let the optimization gain confidence throu
 
 The optimization package that is built into TensorFlow:
 
-1. Computes the derivative of the loss with respect to the weights and biases
-2. Takes a step backwards in the direction opposite to that derivative. 
+0. Computes the derivative of the loss with respect to the weights and biases
+1. Takes a step backwards in the direction opposite to that derivative. 
 
 These two steps are repeated until we reach a minimum of the loss function. 
 
