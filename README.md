@@ -431,8 +431,7 @@ Find a point where large changes in epoch result in small changes to accuracy.
 
 Lowering the learning rate requires more epochs, but achieves better accuracy. 
 
-## Practice methods available in the lab from the repository 
-
+## Practice methods available in the lab in the NN-Lab folder
 
 
 
