@@ -105,7 +105,8 @@ In order to covert scores into proper probablities, we use a Softmax function. T
 1. Proper probablites always sum to 1 
 2. They are directly proportional to the scores
 
-Explore the softmax function in Tensor Flow
+Explore the softmax function in Tensor Flow 
+
 
 x = tf.nn.softmax([2.0, 1.0, 0.2])
 
