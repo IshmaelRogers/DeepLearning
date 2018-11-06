@@ -44,9 +44,25 @@ Please run the helloTensor.py from this repository
 
 # Classification Problems 
 
-The task of taking an input and giving it a label.
-Once you can classify objects you can make efforts to detect them and rank them. 
+Is the task of taking an input and giving it a label. 
 
+# Example 
+
+Imagine exploring a jungle that only consisted of 4 different types of the following animals. 
+
+1. Monkies
+2. Spiders
+3. Birds
+4. Snakes
+
+Having been familiar with these different types of animals previously, our * trained brains * would have no problems classifying each new animal they saw as one of the 4 animals in this jungle. 
+
+Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is develop artificial neural networks so that a computer equiped with a camera (for this example) can perform the following tasks. 
+
+1. Classify the animal 
+2. Detect the animal ***  A topic that is explored in perception
+
+Like all great brains, our network must be trained on previous data 
 The training set has been sorted 
 
 Now we have a new example, now determine which class it belongs too. 
