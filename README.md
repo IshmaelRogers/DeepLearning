@@ -404,10 +404,19 @@ NOTE: The None dimension is a placeholder for the batch size.
 
 This set up allows us to feed features and labels into the model with varying batch sizes
 
-# Explore the mini batch function in the repository 
+# Explore the mini batch functionn and example in the repository 
 
 
+# Epochs 
 
+a single forward and backward pass of the entire data set. 
+
+used to increase the accuracy of the model without requiring more data.
+
+## Epochs in TensorFlow
+
+see Epochs example in repository 
+ 
 
 
 
