@@ -199,6 +199,7 @@ Variables need to zero mean and equal variance
 
 Badly condition vs well conditio 
 
+## How to feed image pixels to the classifier 
 Images 
 
 Normalized 
@@ -208,7 +209,7 @@ Weights neef to be initialize at a good enough startign point
 
 scheme 
 
-draw weights randopmly from a gaussian distribution with mean zero and standard deviation sigma
+draw weights randomly from a gaussian distribution with mean zero and standard deviation sigma
 
 sigma determines order of magnitude of the outputs at the initial point of the optimization. 
 
@@ -219,16 +220,81 @@ A small sigma means small peaks - very uncertain
 
 NOTE: Start off with a small peak and let the optimization gain confidence. 
 
+## Where to initialize the optimization
+
 Optimization package compute derivative of the loss with respect to the weights and biases and takes a step backwards in the direction opposite to that derivative. Do until we reach a minimum of the loss function. 
 
+Udacity has provided me with a lab to test these concepts.
+
+Please see link 
+
+
+Training set 
+
+Test set ***
+
+Validation set 
+
+Seperate the sets so that the data stays completely unbiased.
+
+*** Depending on the size of the data set, take one or nmore subsets of data and do not perform any analysis on them. 
+
+## Overfittng 
+
+We use a validation set when training models to prevent the robot from learning from the test set. 
+
+# Validation and Test Set size 
+
+# Rule of 30
 
 
 
 
-## How to feed image pixels to the classifier 
+
+## Techniques for overfitting.  
 
 
-## Where to initialize the optimization
+The bigger the test set the less noisy the accuracy measure will be 
+
+a change that effects 30 examples in your validation set one way or another is statistically significant, and can be trusted. 
+
+RUle of 30 
+
+Example 
+
+Out of 3000 examples in validation set trust rule of 30 
+
+which level of accuracy can you be confident is not noise? 
+
+80% -> 81.0% 
+80% -> 80.5%
+80% -> 80.1%
+
+Some math 
+ ---
+(1.0 x 3000)/100 = 30
+(0.5 x 3000)/100 = 15
+(0.1 x 3000)/100 = 3
+
+
+In summary if at least 30 examples are going from incorrect to correct the methods are improving the models
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
