@@ -24,15 +24,21 @@ Deep learning is necessary when there is a lot of data to work with and a comple
 
 # Tensors 
 
-In TensorFlow data is encapsulated in an object called a tensor. Tensor come in a variety of different sizes. 
+In TensorFlow data is encapsulated in an object called a tensor. Tensors can come in a variety of different sizes. 
 
 A = tf.constant(1234) is a 0-dimensional int32 tensor
+
 B = tf.constant([123, 456, 789]) is a 1-dimensional int32 tensor 
+
 C = tf.constant(([123, 456, 789], [222, 333, 444]) is a 2-dimensional int32 tensor 
 
 # Sessions 
 
-TensorFlow's API is built around the concept of a computational graph. A "TensorFlow Session" is an environement for runnng a graph.  The session is responsible for allocating the operations to GPU(s) and/or CPU(s) 
+TensorFlow's API is built around the concept of a computational graph. 
+
+A "TensorFlow Session" is an environement for runnng the graph.  
+
+The session is responsible for allocating the operations to GPU(s) and/or CPU(s) 
 
 Please run the "helloTensor.py" file contianed in this repository
 
@@ -51,7 +57,7 @@ Imagine exploring a jungle that only consisted of 4 different types of the follo
 
 Based on previous observations (and the data obtained during the process), our trained brains would have no problems classifying each new animal we saw as one of the 4 animals found in this jungle. 
 
-Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop artificial neural networks so that a robot equiped with a camera can perform the following tasks: 
+Computers do not yet posses the same capabilites as our brains. Therefore as a machine learning engineer, my job is to develop deep neural networks so that a robot equiped with a camera can perform the following tasks: 
 
 0. Classify the animal 
 1. Detect the animal ***  A topic that is explored in perception
@@ -64,14 +70,14 @@ Like all great brains, our artificial network must also be trained using previou
 
 *** Depending on the size of the data set, take one or more subsets of test data and do not perform any analysis on them. 
 NOTE: It is best practice to always seperate data sets so that the data stays completely unbiased.
-NOTE: The training set, the previous data has been sorted which means labels have been assigned to correctly classified animals.
+NOTE: In the training set, the previous data has been sorted which means labels have been assigned to correctly classified animals.
 NOTE: The validation set is used to prevent the classifier from learning directly from the test set.
 
 ## Overfitting 
 
 An important concept to understand and prevent while training models.
 
-In this case, consider the previous data that came from our robot's first ever exploration. The robot captured 40,000 monkies, 20,000 spiders, 33,300 birds, and 25,000 snakes on camera. As mentioned previous, I spent some time carefully analyzing each image and provided each animal with a correct lablel.
+In this case, consider the previous data that came from our robot's first ever exploration. The robot captured 40,000 monkies, 20,000 spiders, 33,300 birds, and 25,000 snakes on camera. As mentioned previously, I spent some time carefully analyzing each image and provided each animal with a correct lablel.
 
 Within the first few seconds of the next exploration our system detected a new example, now its job is to determine which class that animal belongs to. 
 
@@ -79,9 +85,9 @@ Let's develop a Classifier to help us do this.
 
 # Logistic Classifier 
 
-Ideally we'd want out linear classifier to take in pixels of an image as inputs, and apply a linear function to them to generate a prediction of what the animal could be. 
+Ideally we'd want a linear classifier to take in pixels of an image as inputs, and apply a linear function to them to generate a prediction of what the animal could be. 
 
-The linear function we use is as follow  
+The linear function we use is as follows: 
 
 W x X + b = y  <----- Create equation 
 
@@ -99,13 +105,13 @@ NOTE: When classifying each animal of the jungle, it is important to remember th
 
 # Question: How to use scores to perform classification?
 
-In practice we wil convert the scores into proper probabilities such that, the probability of the correct classification is close to 1 and the every other classification is close to 0.
+In practice we will convert the scores into proper probabilities such that, the probability of the correct classification is close to 1 and the every other classification is close to 0.
 
 To do this, we use the Softmax function. 
 
 ## Softmax Function 
 
-Explore the softmax function in Tensor Flow Deep_Neural_Networks/softmax.py
+Explore the softmax function in Tensor Flow [alt text][Deep_Neural_Networks/softmax.py]
 Results from the code if ran as is: 
 
 # [0.6590012  0.24243298 0.09856589]
